@@ -331,7 +331,24 @@
                 <textarea id="message" name="message" rows="4" placeholder="np. Potrzebuję prostej strony do zbierania kontaktów dla serwisu klimatyzacji..." required></textarea>
             </div>
             <button type="submit" class="btn" style="width: 100%;">Poproś o darmową wycenę</button>
-        </form>
+        <form action="https://formspree.io/f/mrenkvjg" method="POST">
+  <div>
+    <label for="name">Imię i nazwisko:</label><br>
+    <input type="text" id="name" name="name" required style="width: 100%; padding: 8px; margin-top: 4px;">
+  </div>
+  
+  <div style="margin-top: 12px;">
+    <label for="email">Twój e-mail:</label><br>
+    <input type="email" id="email" name="_replyto" required style="width: 100%; padding: 8px; margin-top: 4px;">
+  </div>
+
+  <div style="margin-top: 12px;">
+    <label for="message">Wiadomość:</label><br>
+    <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 8px; margin-top: 4px;"></textarea>
+  </div>
+
+  <button type="submit" style="margin-top: 16px; padding: 10px 20px; cursor: pointer;">Wyślij wiadomość</button>
+</form>
     </section>
 
     <footer>
