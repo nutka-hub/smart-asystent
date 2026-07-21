@@ -113,6 +113,8 @@
             transition: background 0.3s, transform 0.2s;
             border: none;
             cursor: pointer;
+            width: 100%;
+            text-align: center;
         }
 
         .btn:hover {
@@ -266,7 +268,7 @@
         <div class="hero-text">
             <h1>Zautomatyzuj swój biznes i <span>zdobywaj klientów</span></h1>
             <p>Projektujemy nowoczesne strony landing page, interaktywne formularze oraz automatyzacje powiązane ze sztuczną inteligencją. Oszczędzaj czas i zwiększaj sprzedaż.</p>
-            <a href="#kontakt" class="btn">Darmowa Wycena</a>
+            <a href="#kontakt" class="btn" style="width: auto;">Darmowa Wycena</a>
         </div>
         <div class="hero-image">
             <img src="tlo.png" alt="Smart Asystent Automatyzacja">
@@ -308,18 +310,18 @@
             <h2>Skontaktuj się z nami</h2>
             <p>Opisz krótko swój projekt, a przygotujemy darmową propozycję w 24 godziny.</p>
         </div>
-        <form action="#" method="POST" onsubmit="alert('Dziękujemy za zapytanie! Zespół Smart-Asystent.pl skontaktuje się z Tobą wkrótce.'); return false;">
+        <form action="https://formspree.io/f/mrenkvjg" method="POST">
             <div class="form-group">
                 <label for="name">Imię i Nazwisko / Firma</label>
                 <input type="text" id="name" name="name" placeholder="np. Jan Kowalski" required>
             </div>
             <div class="form-group">
                 <label for="email">Adres E-mail</label>
-                <input type="email" id="email" name="email" placeholder="jan@twojafirma.pl" required>
+                <input type="email" id="email" name="_replyto" placeholder="jan@twojafirma.pl" required>
             </div>
             <div class="form-group">
                 <label for="service">Czym jesteś zainteresowany?</label>
-                <select id="service" name="service" style="color: white; background-color: rgba(15, 23, 42, 0.9);">
+                <select id="service" name="service">
                     <option value="landing_page">Strona Landing Page</option>
                     <option value="formularz">Inteligentny Formularz / Kalkulator</option>
                     <option value="automatyzacja">Automatyzacja AI + CRM</option>
@@ -330,25 +332,8 @@
                 <label for="message">Opisz krótko swoje potrzeby</label>
                 <textarea id="message" name="message" rows="4" placeholder="np. Potrzebuję prostej strony do zbierania kontaktów dla serwisu klimatyzacji..." required></textarea>
             </div>
-            <button type="submit" class="btn" style="width: 100%;">Poproś o darmową wycenę</button>
-        <form action="https://formspree.io/f/mrenkvjg" method="POST">
-  <div>
-    <label for="name">Imię i nazwisko:</label><br>
-    <input type="text" id="name" name="name" required style="width: 100%; padding: 8px; margin-top: 4px;">
-  </div>
-  
-  <div style="margin-top: 12px;">
-    <label for="email">Twój e-mail:</label><br>
-    <input type="email" id="email" name="_replyto" required style="width: 100%; padding: 8px; margin-top: 4px;">
-  </div>
-
-  <div style="margin-top: 12px;">
-    <label for="message">Wiadomość:</label><br>
-    <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 8px; margin-top: 4px;"></textarea>
-  </div>
-
-  <button type="submit" style="margin-top: 16px; padding: 10px 20px; cursor: pointer;">Wyślij wiadomość</button>
-</form>
+            <button type="submit" class="btn">Poproś o darmową wycenę</button>
+        </form>
     </section>
 
     <footer>
