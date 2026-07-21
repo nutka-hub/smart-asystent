@@ -339,6 +339,81 @@
     <footer>
         <p>&copy; 2026 Smart-Asystent.pl. Wszelkie prawa zastrzeżone.</p>
     </footer>
+<script>
+  const contactForm = document.querySelector('form[action*="formspree"]');
 
+  if (contactForm) {
+    contactForm.addEventListener("submit", async function(event) {
+      event.preventDefault(); // Blokujemy przeładowanie i wyjście do Formspree
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerText;
+      
+      // Pobieramy lub tworzymy kontener na komunikat
+      let statusContainer = document.getElementById("form-status");
+      if (!statusContainer) {
+        statusContainer = document.createElement("div");
+        statusContainer.id = "form-status";
+        statusContainer.style.marginTop = "1.5rem";
+        statusContainer.style.padding = "1rem";
+        statusContainer.style.borderRadius = "8px";
+        statusContainer.style.textAlign = "center";
+        statusContainer.style.fontWeight = "600";
+        contactForm.appendChild(statusContainer);
+      }
+
+      // Stan ładowania
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Wysyłanie...";
+      statusContainer.style.display = "none";
+
+      const data = new FormData(event.target);
+
+      try {
+        const response = await fetch(event.target.action, {
+          method: contactForm.method,
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Sukces
+          statusContainer.style.display = "block";
+          statusContainer.style.backgroundColor = "rgba(34, 197, 94, 0.15)";
+          statusContainer.style.border = "1px solid #22c55e";
+          statusContainer.style.color = "#4ade80";
+          statusContainer.innerHTML = "Dziękujemy! Wiadomość została wysłana pomyślnie. Skontaktujemy się w ciągu 24h.";
+          contactForm.reset();
+        } else {
+          // Błąd odpowiedzi serwera
+          const result = await response.json();
+          statusContainer.style.display = "block";
+          statusContainer.style.backgroundColor = "rgba(239, 68, 68, 0.15)";
+          statusContainer.style.border = "1px solid #ef4444";
+          statusContainer.style.color = "#f87171";
+          
+          if (Object.hasOwn(result, 'errors')) {
+            statusContainer.innerHTML = result["errors"].map(error => error["message"]).join(", ");
+          } else {
+            statusContainer.innerHTML = "Coś poszło nie tak. Spróbuj wysłać wiadomość ponownie.";
+          }
+        }
+      } catch (error) {
+        // Błąd sieci/połączenia
+        statusContainer.style.display = "block";
+        statusContainer.style.backgroundColor = "rgba(239, 68, 68, 0.15)";
+        statusContainer.style.border = "1px solid #ef4444";
+        statusContainer.style.color = "#f87171";
+        statusContainer.innerHTML = "Wystąpił problem z połączeniem. Sprawdź internet i spróbuj ponownie.";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = originalBtnText;
+      }
+    });
+  }
+</script>
+    
 </body>
 </html>
